@@ -1,14 +1,15 @@
-#pragma once 
+#pragma once
 #include "spaceship.hpp"
 
-class Game{
-    public:
-        Game();
-        ~Game();
-        void Draw();
-        void Update();
-        void HandleInput();
-    private:
-        Spaceship Spaceship;
+class Game {
+   public:
+    Game();
+    ~Game();
+    void Draw();
+    void Update();
+    void HandleInput();
 
+   private:
+    void DelateInactiveLasers();
+    Spaceship spaceship;
 };
