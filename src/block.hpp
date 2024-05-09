@@ -1,13 +1,11 @@
-#pragma once 
+#pragma once
 #include <raylib.h>
 
-class Block{
-    public :
+class Block {
+   public:
     Block(Vector2 position);
     void Draw();
 
-    private:
-        Vector2 position;
-
-
+   private:
+    Vector2 position;
 };
