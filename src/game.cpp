@@ -2,7 +2,9 @@
 
 #include <iostream>
 
-Game::Game() {}
+Game::Game() {
+    obstacles=CreateObstacles();
+}
 
 Game::~Game() {}
 
@@ -11,6 +13,10 @@ void Game::Draw() {
 
     for (auto& laser : spaceship.lasers) {
         laser.Draw();
+    }
+
+    for(auto & obstacle : obstacles){
+        obstacle.Draw(); 
     }
 }
 
@@ -40,4 +46,15 @@ void Game::DelateInactiveLasers() {
             ++it;
         }
     }
+}
+
+std::vector<Obstacle> Game::CreateObstacles() {
+    int obstacleWiidth = Obstacle::grid[0].size()*3;
+    float gap  = (GetScreenWidth()-(4*obstacleWiidth))/5;
+
+    for(int i = 0; i<4; i++){
+        float offsetx = (i+1) * gap + i * obstacleWiidth;
+        obstacles.push_back(Obstacle({offsetx,(float)GetScreenHeight()-100}));
+    }
+    return obstacles;
 }
