@@ -15,6 +15,7 @@ class Game {
     int lives;
     int score;
     int highScore;
+    Music music;
 
    private:
     void DelateInactiveLasers();
@@ -41,4 +42,5 @@ class Game {
     float timeLastAlienFired;
     float mysteryshipSpawnInterval;
     float timeLastSpawn;
+    Sound explosionSound;
 };

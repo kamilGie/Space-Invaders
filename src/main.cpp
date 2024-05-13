@@ -18,6 +18,7 @@ int main() {
     const int screenHeight = 700;
 
     InitWindow(screenWidth + offset, screenHeight + 2 * offset, "space Invaders");
+    InitAudioDevice();
 
     Font font = LoadFontEx("Font/monogram.ttf", 64, 0, 0);
     Texture2D spaceshipImage = LoadTexture("Graphics/spaceship.png");
@@ -27,6 +28,7 @@ int main() {
     Game game;
 
     while (!WindowShouldClose()) {
+        UpdateMusicStream(game.music);
         game.HandleInput();
         game.Update();
         BeginDrawing();
@@ -59,5 +61,6 @@ int main() {
     }
 
     CloseWindow();
+    CloseAudioDevice();
     return 0;
 }

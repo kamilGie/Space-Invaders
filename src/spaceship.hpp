@@ -19,5 +19,6 @@ class Spaceship{
     Texture2D image;
     Vector2 position;
     double lastFireTime=0;
+    Sound laserSound;
 
 };
