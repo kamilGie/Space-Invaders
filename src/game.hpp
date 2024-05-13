@@ -14,6 +14,7 @@ class Game {
     bool run;
     int lives;
     int score;
+    int highScore;
 
    private:
     void DelateInactiveLasers();
@@ -26,6 +27,9 @@ class Game {
     void GameOver();
     void Reset();
     void InitGame();
+    void CHeckForHighScore();
+    void SaveHighscoreToFile(int highscore);
+    int LoadHighScoreFromFile();
    private:
     Spaceship spaceship;
     std::vector<Obstacle> obstacles;

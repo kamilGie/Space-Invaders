@@ -1,6 +1,7 @@
 #include "game.hpp"
 
 #include <iostream>
+#include <fstream>
 
 Game::Game() {
     InitGame();
@@ -170,6 +171,7 @@ void Game::CheckForColisions() {
                 } else if (it->type == 3) {
                     score += 300;
                 }
+                CHeckForHighScore();
 
                 it = aliens.erase(it);
                 laser.active = false;
@@ -193,7 +195,8 @@ void Game::CheckForColisions() {
         if (CheckCollisionRecs(mysteryship.getRect(), laser.getRect())) {
             mysteryship.alive = false;
             laser.active = false;
-            score+=500;
+            score += 500;
+            CHeckForHighScore();
         }
     }
     // Alien Lasers
@@ -258,6 +261,36 @@ void Game::InitGame() {
     timeLastSpawn = 0;
     lives = 3;
     score = 0;
+    highScore = LoadHighScoreFromFile();
     run = true;
     mysteryshipSpawnInterval = GetRandomValue(10, 20);
+}
+
+void Game::CHeckForHighScore() {
+    if(score>highScore){
+        highScore=score;
+        SaveHighscoreToFile(highScore);
+    }
+}
+
+void Game::SaveHighscoreToFile(int highscore) {
+    std::ofstream highscoreFile("highscore.txt");
+    if(highscoreFile.is_open()){
+        highscoreFile << highScore;
+        highscoreFile.close();
+    }else {
+        std::cerr << " failed to save highscore to file " << std::endl;
+    }
+}
+
+int Game::LoadHighScoreFromFile() {
+    int loadedHighscore = 0;
+    std::ifstream highscoreFile("highscore.txt");
+    if(highscoreFile.is_open()){
+        highscoreFile >> loadedHighscore;
+        highscoreFile.close();
+    }else{
+        std::cerr<<" failed to lead highsocre from file"<< std::endl;
+    }
+    return loadedHighscore;
 }
