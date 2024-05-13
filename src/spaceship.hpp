@@ -12,6 +12,7 @@ class Spaceship{
         void MoveRight();
         void FireLaser();
         std::vector<Laser> lasers;
+        Rectangle getRect();
 
     private:
     Texture2D image;
